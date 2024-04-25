@@ -1,10 +1,10 @@
 <?php
 ob_start();
 
-$servername = "199.231.187.146"; // or your server name
-$username = "sweepstrac";
-$password = "12345678";
-$dbname = "sweepstrac";
+$servername = "89.116.139.118"; // or your server name
+$username = "jd";
+$password = "Jayesh8169";
+$dbname = "account";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
