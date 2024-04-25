@@ -148,7 +148,7 @@ if (isset($action)) {
             echo $branchid = field("Branch ID", "number", "branchid", "Enter Your Branch Id", isset($row['branchid']) ? $row['branchid'] : '');
             echo $withdrawl = field("Withdrawl ", "number", "withdrawl", "Enter the Withdrawl", isset($row['withdrawl']) ? $row['withdrawl'] : '');
         }
-    } else if ($action == "CASH_OUT" && ($role == "Agent" || $role == "Supervisor" || $role == "Admin")) {
+    } else if ($action == "CASH_OUT" && ($role == "Agent" || $role == "Supervisor" || $role == "Manager" || $role == "Admin")) {
         $title = "Reedem  Details";
         $heading = "Enter the Details Correctly";
         $action = "../App/Logic/creation.php?action=CashOut";
@@ -172,7 +172,7 @@ if (isset($action)) {
 
         echo field("Excess Amount", "number", "excessamount", "Enter the Excess Amount");
         $platformOptions = "<option value=''>Select Platform</option>";
-        $result = $conn->query("SELECT name FROM platform where status =1");
+        $result = $conn->query("SELECT name FROM platform where status =1 And branch='$gbranch'");
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 $platformOptions .= "<option value='" . htmlspecialchars($row['name']) . "'>" . htmlspecialchars($row['name']) . "</option>";
@@ -185,7 +185,7 @@ if (isset($action)) {
 
         // echo field("cashApp Name", "text", "cashAppname", "Enter the cashApp Name");
         $cashAppOptions = "<option value=''>Select cashApp</option>";
-        $result = $conn->query("SELECT * FROM cashapp where status =1");
+        $result = $conn->query("SELECT * FROM cashapp where status =1 And branch='$gbranch'");
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 $cashAppOptions .= "<option value='" . htmlspecialchars($row['name']) . "'>" . htmlspecialchars($row['name']) . "</option>";
